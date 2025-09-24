@@ -29,6 +29,11 @@ public class UserController {
         return this.userService.getAllUsers();
     }
 
+    @GetMapping("/for-create-org")
+    public List<User> getUsersForCreateOrg() {
+        return this.userService.getUsersForCreateOrg();
+    }
+
     @GetMapping("/{id}")
     public User getUserById(@PathVariable String id) {
         return this.userService.getUserById(id);
