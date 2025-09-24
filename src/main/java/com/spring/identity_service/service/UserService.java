@@ -53,6 +53,12 @@ public class UserService {
         this.userRepository.deleteById(id);
     }
     
+    /**
+     * Retrieves users whose accounts are currently in a valid activation period.
+     * Uses current date to filter users based on activation and expiration dates.
+     * 
+     * @return list of users eligible for organization creation
+     */
     public List<User> getUsersForCreateOrg() {
         return this.userRepository.getUsersForCreateOrg(LocalDate.now());
     }
