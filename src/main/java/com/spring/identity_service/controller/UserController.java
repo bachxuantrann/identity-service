@@ -29,6 +29,18 @@ public class UserController {
         return this.userService.getAllUsers();
     }
 
+    /**
+     * Retrieves users whose accounts are currently in a valid activation period.
+     * Returns only users where the current date falls between their activation
+     * and expiration dates (inclusive), handling null dates appropriately.
+     * 
+     * @return list of users eligible for organization creation
+     */
+    @GetMapping("/for-create-org")
+    public List<User> getUsersForCreateOrg() {
+        return this.userService.getUsersForCreateOrg();
+    }
+
     @GetMapping("/{id}")
     public User getUserById(@PathVariable String id) {
         return this.userService.getUserById(id);

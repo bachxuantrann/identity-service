@@ -9,6 +9,7 @@ import com.spring.identity_service.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -26,6 +27,8 @@ public class UserService {
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setDob(request.getDob());
+        user.setActivationDate(request.getActivationDate());
+        user.setExpirationDate(request.getExpirationDate());
         return this.userRepository.save(user);
     }
     public List<User> getAllUsers(){
@@ -42,9 +45,21 @@ public class UserService {
         user.setFirstName(request.getFirstName());
         user.setLastName(request.getLastName());
         user.setDob(request.getDob());
+        user.setActivationDate(request.getActivationDate());
+        user.setExpirationDate(request.getExpirationDate());
         return this.userRepository.save(user);
     }
     public void deleteUser(String id){
         this.userRepository.deleteById(id);
+    }
+    
+    /**
+     * Retrieves users whose accounts are currently in a valid activation period.
+     * Uses current date to filter users based on activation and expiration dates.
+     * 
+     * @return list of users eligible for organization creation
+     */
+    public List<User> getUsersForCreateOrg() {
+        return this.userRepository.getUsersForCreateOrg(LocalDate.now());
     }
 }

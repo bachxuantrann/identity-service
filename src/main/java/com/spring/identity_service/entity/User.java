@@ -25,4 +25,6 @@ public class User {
     private String firstName;
     private String lastName;
     private LocalDate dob;
+    private LocalDate activationDate;
+    private LocalDate expirationDate;
 }
